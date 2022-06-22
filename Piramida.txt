@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class PiramidoKreaotrUltraPlus {
+    //Dzięki identycznemu programowi egipcjanie zbudowali piramidy!
+
+    Scanner scan = new Scanner(System.in);
+
+    int WielkoscMaZnaczenie;
+
+    public void PodajWysokoscPiramidy(){
+        System.out.println("Jak wielką piramide chcesz zbudować ?");
+        WielkoscMaZnaczenie = scan.nextInt();
+    }
+    public void ZbudujPiramide() {
+        for (int i = 1; i <= WielkoscMaZnaczenie; i++)
+        {
+            for (int j = i; j < WielkoscMaZnaczenie; j++)
+            {
+                System.out.print(" ");
+            }
+            for (int k = 1; k < (i * 2); k++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[]args){
+        PiramidoKreaotrUltraPlus Cheops = new PiramidoKreaotrUltraPlus();
+        Cheops.PodajWysokoscPiramidy();
+        Cheops.ZbudujPiramide();
+    }
+}
+

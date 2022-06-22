@@ -1,0 +1,278 @@
+package Zadania.zad1;
+
+import java.util.Scanner;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
+public class Kalkulator {
+    Scanner scan = new Scanner(System.in);
+
+    private double liczba1;
+    private double liczba2;
+    private int operator;
+    private double wynik;
+    private String znak;
+    private String Zdanie;
+
+    public void setZdanie() {
+        Zdanie = scan.next();
+    }
+
+    public  void setLiczba1() {
+        liczba1 = scan.nextDouble();
+    }
+
+    public  void setLiczba2() {
+        liczba2 = scan.nextDouble();
+    }
+
+    public String getZdanie() {
+        return Zdanie;
+    }
+
+    public  double getLiczba1() {
+           return liczba1;
+    }
+
+    public  double getLiczba2() {
+            return liczba2;
+    }
+
+    public  void Przywitanie(){
+        System.out.println("\nWitaj w zaawansowanym kalulatorze jaskiniowca.");
+    }
+
+    public  void WyswietlPytania(){
+        System.out.println("\nWpradz pierwszą liczbe : ");
+        setLiczba1();
+        System.out.println("Wpradz drugą liczbę : ");
+        setLiczba2();
+        System.out.println("Z jakiej operacji chcesz skorzystać ? \nWybierz z poniższej listy liczbę przedstawiającą daną operację\n(Wprowadz ją i naciśnij Enter)");
+        System.out.println("\n 1 Dodawanie\n 2 Odejmowanie\n 3 mnożenie\n 4 dzielenie\n 5 modulo\n 6 Potęgowanie\n 7 Pierwiastek drugiego stopnia");
+        SwichMetoda();
+    }
+
+    public void WyswietlWynik( double liczba1, double liczba2, double wynik, String znak){
+        preattyPrint(liczba1);
+        System.out.print(znak);
+        preattyPrint(liczba2);
+        System.out.print(" = " );
+        preattyPrint(wynik);
+    }
+
+    public void WyswietlWynikPierwiastek( double liczba1, double wynik, String znak){
+        System.out.println("Pierwiastek drugiego stopnia z");
+        preattyPrint(liczba1);
+        System.out.print(znak);
+        preattyPrint(wynik);
+    }
+
+    public static void preattyPrint(double val) {
+        if (val % 1 == 0) {
+            System.out.print((int) val);
+        } else {
+            System.out.print(val);
+        }
+    }
+// Zakończ program. W Menu
+    public int End(){
+      return 0;
+    }
+// Wybierz działanie w kalkulatorze podstawowym, oraz wyswietl wynik.
+    public  void SwichMetoda(){
+        operator = scan.nextInt();
+        switch (operator){
+            case 1 :
+                znak = " + ";
+                wynik = getLiczba1() + getLiczba2();
+                WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+                break;
+            case 2 :
+                znak = " - ";
+                wynik = getLiczba1() - getLiczba2();
+                WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+                break;
+            case 3 :
+                znak = " * ";
+                wynik = getLiczba1() * getLiczba2();
+                WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+                break;
+            case 4 :
+                if(liczba2 != 0) {
+                    znak = " / ";
+                    wynik = getLiczba1() / getLiczba2();
+                    WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+                    break;
+                }
+                else {
+                    System.out.println("Nie możesz dzielić przez 0 !");
+                break;
+                }
+            case 5 :
+                znak = " modulo ";
+                wynik = getLiczba1() % getLiczba2();
+                WyswietlWynik(getLiczba1(),getLiczba2(), wynik, znak);
+                break;
+            case 6 :
+                znak = " do potęgi ";
+                wynik = pow(getLiczba1(), getLiczba2());
+                WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+                break;
+            case 7 :
+                znak = " to ";
+                wynik = sqrt( getLiczba1());
+                WyswietlWynikPierwiastek(getLiczba1(),wynik,znak);
+                break;
+
+            default:
+                System.out.println("Drogi troglodyto, miałeś wybrać liczbę z przedziału od 1 do 7\nWprowadź liczbę jeszcze raz");
+                SwichMetoda();
+                break;
+        }
+    }
+// Po wykonaniu obliczenia kalkulator pyta o kolejne polecnie
+    public  void WyswietlPytania2() {
+        System.out.println("\n\nCzy chcesz przeprowadzić inne działanie ?\nJeśli tak wciśnij \" 1 \"\nJeśli chcesz wrócić do menu wciśnij \" 2 \"\nJeśli chcesz zakończyć wciśnij \" 3 \"");
+
+        operator = scan.nextInt();
+        switch (operator){
+            case 1 :
+                WyswietlPytania();
+                WyswietlPytania2();
+                break;
+            case 2 :
+                Menu();
+                break;
+            case 3 :
+                End();
+                break;
+            default:
+                System.out.println("\nWprowadziłeś niewłaściwy znak \n");
+                WyswietlPytania2();
+        }
+    }
+    public  void WyswietlPytania3() {
+        System.out.println("\n\nCzy chcesz przeprowadzić inne działanie ?\nJeśli tak wciśnij \" 1 \"\nJeśli chcesz wrócić do menu wciśnij \" 2 \"\nJeśli chcesz zakończyć wciśnij \" 3 \"");
+
+        operator = scan.nextInt();
+        switch (operator){
+            case 1 :
+                Pytania1Automat();
+                break;
+            case 2 :
+                Menu();
+                break;
+            case 3 :
+                End();
+                break;
+            default:
+                System.out.println("\nWprowadziłeś niewłaściwy znak \n");
+                WyswietlPytania2();
+        }
+    }
+    public void Pytania1Automat(){
+        System.out.println("\nWprowadz ciąg znaków składający się kolejno z liczb całkowitych, operatora, liczb całkowitych");
+        setZdanie();
+        //Sprawdzam czy zdanie nie jest puste
+        //int ZdanieLength = getZdanie().length();
+        // Wrzucam Zdanie do Tablicy, dzieląc je na pojedyńcze znaki.
+        char[]ZdanieDoTablicy;
+        String ZdanieLiczba2;
+        String ZdanieLiczba1;
+        String ZdanieString;
+
+        ZdanieDoTablicy = Zdanie.toCharArray();
+        // Zmienna przechowuje pozycje operatora wszystko przed nim to liczba1, po nim to liczba2
+        int indexOperatora;
+
+        for (int i=0; i<= (ZdanieDoTablicy.length-1); i++) {
+          if (ZdanieDoTablicy[i] == '+'){
+                znak = " + ";
+                indexOperatora = i;
+                ZdanieString = String.copyValueOf(ZdanieDoTablicy);
+                ZdanieLiczba1 = ZdanieString.substring(0,(indexOperatora));
+                ZdanieLiczba2 = ZdanieString.substring((indexOperatora+1),(ZdanieDoTablicy.length));
+                liczba1 = Integer.valueOf(ZdanieLiczba1);
+                liczba2 = Integer.valueOf(ZdanieLiczba2);
+                wynik = liczba1 + liczba2;
+              WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+              WyswietlPytania3();
+            }
+          if (ZdanieDoTablicy[i] == '-'){
+              znak = " - ";
+              indexOperatora = i;
+              ZdanieString = String.copyValueOf(ZdanieDoTablicy);
+              ZdanieLiczba1 = ZdanieString.substring(0,(indexOperatora));
+              ZdanieLiczba2 = ZdanieString.substring((indexOperatora+1),(ZdanieDoTablicy.length));
+              liczba1 = Integer.valueOf(ZdanieLiczba1);
+              liczba2 = Integer.valueOf(ZdanieLiczba2);
+              wynik = liczba1 - liczba2;
+              WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+              WyswietlPytania3();
+            }
+          if (ZdanieDoTablicy[i] == '*'){
+              znak = " * ";
+              indexOperatora = i;
+              ZdanieString = String.copyValueOf(ZdanieDoTablicy);
+              ZdanieLiczba1 = ZdanieString.substring(0,(indexOperatora));
+              ZdanieLiczba2 = ZdanieString.substring((indexOperatora+1),(ZdanieDoTablicy.length));
+              liczba1 = Integer.valueOf(ZdanieLiczba1);
+              liczba2 = Integer.valueOf(ZdanieLiczba2);
+              wynik = liczba1 * liczba2;
+              WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+              WyswietlPytania3();
+            }
+          if (ZdanieDoTablicy[i] == '/'){
+              znak = " / ";
+              indexOperatora = i;
+              ZdanieString = String.copyValueOf(ZdanieDoTablicy);
+              ZdanieLiczba1 = ZdanieString.substring(0,(indexOperatora));
+              ZdanieLiczba2 = ZdanieString.substring((indexOperatora+1),(ZdanieDoTablicy.length));
+              liczba1 = Integer.valueOf(ZdanieLiczba1);
+              liczba2 = Integer.valueOf(ZdanieLiczba2);
+              wynik = liczba1 / liczba2;
+              WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+              WyswietlPytania3();
+            }
+          if (ZdanieDoTablicy[i] == '%'){
+              znak = " % ";
+              indexOperatora = i;
+              ZdanieString = String.copyValueOf(ZdanieDoTablicy);
+              ZdanieLiczba1 = ZdanieString.substring(0,(indexOperatora));
+              ZdanieLiczba2 = ZdanieString.substring((indexOperatora+1),(ZdanieDoTablicy.length));
+              liczba1 = Integer.valueOf(ZdanieLiczba1);
+              liczba2 = Integer.valueOf(ZdanieLiczba2);
+              wynik = liczba1 % liczba2;
+              WyswietlWynik(getLiczba1(),getLiczba2(), wynik,znak);
+              WyswietlPytania3();
+            }
+        }
+    }
+
+    public void Menu(){
+        System.out.println("\nZ jakiego kalkulatora chcesz skorzystać? ");
+        System.out.println("\n 1 -  Kalulator podstawowy -  umożliwiający wybór operacji oraz wprowadzenie dwóch liczb, na których dana operacja zostanie przeprowadzona. ");
+        System.out.println(" 2 -  Kalulator automatyczny -  kosmicznie zaawansowany kalkulator, prawdopodobnie najbardziej zaawansowany kalulator jaskiniowy na świecie ! ");
+        operator = scan.nextInt();
+        switch (operator){
+            case 1 :
+                WyswietlPytania();
+                WyswietlPytania2();
+                break;
+            case 2 :
+                Pytania1Automat();
+                break;
+            case 3 :
+                End();
+                break;
+        }
+
+    }
+
+    public static void main(String []args){
+        Kalkulator k1 = new Kalkulator();
+        k1.Przywitanie();
+        k1.Menu();
+        k1.End();
+    }
+}

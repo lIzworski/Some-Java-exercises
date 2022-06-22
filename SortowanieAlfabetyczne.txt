@@ -1,0 +1,30 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class SortowanieAlfabetycznie {
+    Scanner scan = new Scanner(System.in);
+    String[]Zdania = new String[5];
+    public void WczytajTekst(){
+        System.out.println("Podaj pięć słów\n");
+        for(int i =0; i<Zdania.length;i++){
+            Zdania[i]= scan.next();
+        }
+    }
+    public void PosortujZdania(){
+        Arrays.sort(Zdania);
+    }
+    public void WyswietlZdania(){
+        System.out.println("\nZdania posortowane alfabetycnzie\n");
+        for(int i =0; i < Zdania.length;i++){
+            System.out.println(Zdania[i]);
+        }
+    }
+    public static void main(String[]args){
+        SortowanieAlfabetycznie s1 = new SortowanieAlfabetycznie();
+        s1.WczytajTekst();
+        s1.PosortujZdania();
+        s1.WyswietlZdania();
+    }
+}
+
+
